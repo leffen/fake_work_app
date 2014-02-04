@@ -243,6 +243,59 @@ Percentage of the requests served within a certain time (ms)
   98%   3156
   99%   3170
  100%   3681 (longest request)
+
+---
+$ ab -n 500 -c 10 127.0.0.1:3030/fake_work
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 127.0.0.1 (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Finished 500 requests
+
+
+Server Software:        WEBrick/1.3.1
+Server Hostname:        127.0.0.1
+Server Port:            3030
+
+Document Path:          /fake_work
+Document Length:        20091 bytes
+
+Concurrency Level:      10
+Time taken for tests:   40.135 seconds
+Complete requests:      500
+Failed requests:        0
+Write errors:           0
+Total transferred:      10233000 bytes
+HTML transferred:       10045500 bytes
+Requests per second:    12.46 [#/sec] (mean)
+Time per request:       802.697 [ms] (mean)
+Time per request:       80.270 [ms] (mean, across all concurrent requests)
+Transfer rate:          248.99 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.1      0       1
+Processing:   338  798 328.4    766    3035
+Waiting:      337  790 327.7    754    3034
+Total:        338  798 328.4    766    3035
+
+Percentage of the requests served within a certain time (ms)
+  50%    766
+  66%    815
+  75%    846
+  80%    869
+  90%    930
+  95%   1023
+  98%   2555
+  99%   2883
+ 100%   3035 (longest request)
+
 ```
 
 Well, it's _consistent_, we can say that for it, it's successfully evening out the response times. longest request isn't that much longer than median.
